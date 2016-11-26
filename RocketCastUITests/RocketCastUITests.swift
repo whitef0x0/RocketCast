@@ -34,7 +34,7 @@ class RocketCastUITests: XCTestCase {
         app.buttons["Add Podcast"].tap()
         
         XCTAssert(app.staticTexts[SamplePodcast.podcastTitle].exists)
-        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        app.collectionViews.children(matching: .any).element(boundBy: 1).tap()
 
         let episodeCells = XCUIApplication().tables.cells
         print(episodeCells.count)
@@ -50,7 +50,7 @@ class RocketCastUITests: XCTestCase {
         expectation(for: doesntExist, evaluatedWith: downloadingLabel, handler: nil)
         firstCell.tap()
         
-        waitForExpectations(timeout: 50, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
         firstCell.tap()
     
     }
